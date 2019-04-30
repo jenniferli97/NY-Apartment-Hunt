@@ -1,3 +1,3 @@
 # NY-Apartment-Hunt
 
-## Please see the app.R file for all code and comments.
+## Please see the app.R file within the NY-Apartment-Hunt-Test folder for all code and comments.
