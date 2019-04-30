@@ -125,7 +125,7 @@ ui <-
                
                # The answer to the question above! 
                
-               p("In October 2018, I signed my offer with Deloitte Consulting in New York. As my roommate next year and I are actively looking for a new place to call home, I thought I could help our apartment hunting process by examining trends in the prices of 2-bedroom apartments to find the best neighborhood for us to live. Although we are only considering living in 10 of Manhattan's 33 neighborhoods due to proximity to our offices, this project includes data for all of Manhattan's neighborhoods. If you're also looking to move to New York soon, I hope this app helps you find the best neighborhood to live in, too!"),
+               p("In October 2018, I signed my offer with Deloitte Consulting in New York. My roommate next year, Lena, will be working at Credit Suisse. As we are actively looking for a new place to call home, I thought I could help our apartment hunting process by examining trends in the prices of 2-bedroom apartments to find the best neighborhood for us to live. Although we are only considering living in 10 of Manhattan's 33 neighborhoods due to proximity to our offices, this project includes data for all of Manhattan's neighborhoods. If you're also looking to move to New York soon, I hope this app helps you find the best neighborhood to live in, too!"),
                
                # Helps break up the text, so it's more visually-pleasing
                
@@ -137,7 +137,15 @@ ui <-
                
                # Answer to question above
                
-               p("My roommate, Lena, will be working at Credit Suisse, which is located in the Flatiron area. My office building is in Midtown. *include map of offices*"),
+               p("Lena's office is located in Flatiron, while my building is in Midtown. *include map of offices*"),
+
+               # Breaks up text 
+               
+               br(),
+               
+               # Another header!
+               
+               p("Lena and I both hope to live within walking distance from our offices (with some flexibility, if we find an amazing apartment!). As you can see from the map, our offices are 1.5 miles away from each other, so it seems to make the most sense for us to look at apartments just below Central Park and right above Gramercy Park. Let's see what the median rental prices look like on the Prices tab!"), 
                
                # Breaks up text
                
@@ -145,9 +153,9 @@ ui <-
                
                # Who doesn't love fun facts?
                
-               h3("Fun facts"), 
+               h3("Bonus: Fun Facts"), 
                
-               p("Varsity athletes, we currently don't live together, but can see each other's rooms from our windows, we go to Flour Bakery at least 5x every week, and more!")
+               p("Both varsity athletes; currently don't live together, but can see each other's rooms from our windows; we go to Flour Bakery at least 5x every week, and more!")
             
               ))),
   
@@ -172,7 +180,7 @@ ui <-
               
               # A description of the page
               
-              p("This is an analysis of the median asking rent price for all neighborhoods in Manhattan between January 2000 and February 2019. This allows you to compare and contrast price trends for each of Manhattan's neighborhoods over the past 9 years."), 
+              p("This is an analysis of the monthly median asking rental price for all neighborhoods in Manhattan between January 2000 and February 2019. This allows you to compare and contrast price trends for each of Manhattan's neighborhoods over the past 9 years."), 
               
               # Breaks up text
               
@@ -299,8 +307,9 @@ ui <-
               
               # Description of key takeaways
               
-              p("General trends blah blah blah
-                            *maybe insert graph of the 10 neighborhoods Lena and I want to live in and describe which neighborhoods we should focus our attention on as a result of this project*"),
+              p("In general, rental prices seem to spike in May and October for almost every neighborhood and every year between 2000 and 2019. 
+                For 2018, Central Park South had the highest median rental price (around $9,000) out of all the neighborhoods in Manhattan, while Hamilton Heights and Marble Hill appeared to be the cheapest (<$2300).
+              *maybe insert graph of the 10 neighborhoods Lena and I want to live in and describe which neighborhoods we should focus our attention on as a result of this project*"),
               
               # Breaks up text, makes it easier to read
              
