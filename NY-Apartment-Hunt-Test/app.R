@@ -116,9 +116,11 @@ ui <-
              fluidRow(
                
                # First header 
+               
                h1("About Us"),
                
                # Second header
+               
                h3("Why Manhattan?"), 
                
                # The answer to the question above! 
@@ -283,36 +285,100 @@ ui <-
           
           fluidPage(
             
+            # Ensures that all my text below is stacked evenly on top of one another
+            
             fluidRow(
+              
+              #First header
+              
               h1("Takeaways"),
+              
+              #Second header
+              
               h3("What I Learned"), 
+              
+              # Description of key takeaways
+              
               p("General trends blah blah blah
                             *maybe insert graph of the 10 neighborhoods Lena and I want to live in and describe which neighborhoods we should focus our attention on as a result of this project*"),
+              
+              # Breaks up text, makes it easier to read
+             
               br(),
+              
+              # Header, similar font size to second header
+              
               h3("Future steps"), 
+              
+              # What could be improved!
+              
               p("The dataset I used only looked at 2-bedroom rental units throughout Manhattan. In the future, it would be interesting to compare other units, such as studios, 1-bedroom apartments, and 3-bedroom apartments. It would also be fascinating to look at the square footage of the average rental unit for each neighboorhood and compare that data across neighborhoods. However, because my roommate, Lena, and I are more concerned about the proximity of our apartment to our respective offices, we are not as concerned about the price/square footage of each neighborhood."),
+              
+              # Breaks up text
+              
               br(),
+              
+              # Final header
+              
               h3("Contact me!"), 
-              p("This project was created by Jennifer Li for GOV1005: Data in the Spring of 2019. If you have any questions or suggestions about my app, please feel free to send me a message at jenniferli@college.harvard.edu."),
+              
+              # My contact information
+              
+              p("This project was created by Jennifer Li for GOV1005: Data, Spring 2019. If you have any questions or suggestions about my app, please feel free to send me a message at jenniferli@college.harvard.edu."),
+              
+              # Breaks up text
+              
               br(),
+              
+              # Italicizes and centers my text
+              
               tags$i(h3("Happy house hunting!"), align = "center")
                   )
                 )
              )
            )
-  
+
+# Server code
+
 server <- function(input, output) {
+  
+  # Redners a reactive plot for rentPlot
   
   output$rentPlot <- renderPlot({
     
+    # Storing rent as price for future use
+    
     price <- rent %>%
+      
+      # Filters Month by referring to the Month inputs
+      
       filter(Month %in% input$Month) %>%
+      
+      # Filters areaName by referring to areaName inputs
+      
       filter(areaName %in% input$areaName) %>%
+      
+      # Filters Year by referring to Year inputs
+      
       filter(Year %in% input$Year)
     
+    # Creates a ggplot using the price dataset, with Month as the x-axis and asking_price as the y-axis.
+    # Set color to areaName, so each neighborhood would represent a different color
+    
     ggplot(data = price, aes(x = Month, y = asking_price, color = areaName)) +
+      
+      # Creates a point graph of the selected data
+      
       geom_point() +
+      
+      # Creates a line graph, connecting the points by areaName and Year
+      
       geom_line(aes(linetype = Year, group = areaNameYear)) +
+      
+      # Defines the x- and y-axes, color changes areaName to Neighborhood, which is a more accurate label
+      # for the legend. Also creates a title and caption, so that the reader understands what they are 
+      # looking at
+  
       labs(x = "Month",
            y = "Price in USD ($)",
            color = "Neighborhood",
@@ -324,6 +390,6 @@ server <- function(input, output) {
 }
 
 
-# Run the application
+# Runs the application
 shinyApp(ui = ui, server = server)
 
