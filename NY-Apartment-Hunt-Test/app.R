@@ -99,7 +99,42 @@ ui <-
                
                p("For the R code, please check out my ",
                  tags$a(href = "https://github.com/jenniferli97/NY-Apartment-Hunt",
-                        "GitHub repository.")))
+                        "GitHub repository."))),
+             
+             # Used break for formatting purposes
+             
+             br(),
+            
+             imageOutput("manhattan"),
+             
+             # Used breaks to add the source, as shown below
+             
+             br(),
+             
+             # Used breaks to add the source, as shown below 
+             
+             br(),
+             
+             # Used breaks to add the source, as shown below
+             
+             br(),
+             
+             # Used breaks to add the source, as shown below
+             
+             br(),
+             
+             # Used breaks to add the source, as shown below
+             
+             br(),
+             
+             # Used breaks to add the source, as shown below
+             
+             br(),
+             
+             # Adds the source to the image of Manhattan's skyline
+             
+             h5("Source: Viator", align = "center")
+            
              )
            ),
   
@@ -125,7 +160,7 @@ ui <-
                
                # The answer to the question above! 
                
-               p("In October 2018, I signed my offer with Deloitte Consulting in New York. My roommate next year, Lena, will be working at Credit Suisse. As we are actively looking for a new place to call home, I thought I could help our apartment hunting process by examining trends in the prices of 2-bedroom apartments to find the best neighborhood for us to live. Although we are only considering living in 10 of Manhattan's 33 neighborhoods due to proximity to our offices, this project includes data for all of Manhattan's neighborhoods. If you're also looking to move to New York soon, I hope this app helps you find the best neighborhood to live in, too!"),
+               p("In October 2018, I signed my offer with Deloitte Consulting in New York. My roommate next year, Lena, will be working at Credit Suisse. As we are actively looking for a new place to call home, I thought I could help our apartment hunting process by examining trends in the prices of 2-bedroom apartments to find the best neighborhood for us to live. This project includes data for all of Manhattan's neighborhoods. If you're also looking to move to New York soon, I hope this app helps you find the best neighborhood to live in, too!"),
                
                # Helps break up the text, so it's more visually-pleasing
                
@@ -137,15 +172,7 @@ ui <-
                
                # Answer to question above
                
-               p("Lena's office is located in Flatiron, while my building is in Midtown. *include map of offices*"),
-
-               # Breaks up text 
-               
-               br(),
-               
-               # Another header!
-               
-               p("Lena and I both hope to live within walking distance from our offices (with some flexibility, if we find an amazing apartment!). As you can see from the map, our offices are 1.5 miles away from each other, so it seems to make the most sense for us to look at apartments just below Central Park and right above Gramercy Park. Let's see what the median rental prices look like on the Prices tab!"), 
+               p("Lena's office is located in Flatiron, while my building is in Midtown. Lena and I both hope to live within walking distance from our offices (with some flexibility, if we find an amazing apartment!). Since our offices are 1.5 miles away from each other, it seems to make the most sense for us to look at apartments just below Central Park and right above Gramercy Park. Let's see what the median rental prices look like on the Prices tab!"), 
                
                # Breaks up text
                
@@ -155,8 +182,24 @@ ui <-
                
                h3("Bonus: Fun Facts"), 
                
-               p("Both varsity athletes; currently don't live together, but can see each other's rooms from our windows; we go to Flour Bakery at least 5x every week, and more!")
-            
+               # Sets up my ordered list
+               
+               tags$ul(
+                 
+                 # First bullet point, describing first fun fact
+                 
+                 tags$li("Both varsity athletes (she's on the sailing team and I'm on the rowing team)"),
+                 
+                 # Second bullet point, describing second fun fact
+                 
+                 tags$li("Currently don't live together, but can see each other's rooms from our windows"),
+                 
+                 # Final bullet point, describing third fun fact. Use tags$a to create an HTML link to Flour's website
+                 
+                 tags$li("We have an unhealthy obsession with",
+                        tags$a(href = "https://flourbakery.com/", "Flour Bakery.")) 
+               )
+
               ))),
   
   # Third panel, price! This is where the interactive graph lies.
@@ -168,6 +211,7 @@ ui <-
           fluidPage(
             
             # Helps ensure that all my text below is stacked evenly on top of one another
+            
             fluidRow(
               
               # First header!
@@ -194,7 +238,7 @@ ui <-
       
       sidebarPanel(
         
-        # Allows the user to pick which Neighborhoods they want to investigate. Gives the user the option to select all choices if so desired!
+        # Allows the user to pick which Neighborhoods they want to investigate. Gives the user the option to select all choices if so desired! Default is the 9 neighborhoods we are considering living in.
         
         pickerInput("areaName", "Neighborhood", choices = c("Battery Park City",
                                                             "Central Harlem",
@@ -216,7 +260,7 @@ ui <-
                                                             "Marble Hill",
                                                             "Midtown",
                                                             "Midtown East",
-                                                            "Midown South",
+                                                            "Midtown South",
                                                             "Midtown West",
                                                             "Morningside Heights",
                                                             "Nolita",
@@ -229,13 +273,24 @@ ui <-
                                                             "Washington Heights",
                                                             "West Harlem",
                                                             "West Village"),
+                    
+                                                  select = c("Battery Park City",
+                                                             "Central Park South",
+                                                             "Chelsea",
+                                                             "Flatiron",
+                                                             "Gramercy Park",
+                                                             "Midtown",
+                                                             "Midtown East",
+                                                             "Midtown South",
+                                                             "Midtown West"),
  
                     options = list(`actions-box` = TRUE),
                     multiple = TRUE),
         
-        # Allows the user to pick which Year they want to investigate. Gives the user the option to select all choices if so desired!
+        # Allows the user to pick which Year they want to investigate. Gives the user the option to select all choices if so desired! Default is 2018.
         
         pickerInput("Year", "Year:", choices = c("2010","2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019"),
+                                     select = c("2018"),
                     options = list(`actions-box` = TRUE),
                     multiple = TRUE),
                   
@@ -253,6 +308,19 @@ ui <-
                                                    "October",
                                                    "November",
                                                    "December"),
+                                      
+                                      select = c("January",
+                                                  "February",
+                                                  "March",
+                                                  "April",
+                                                  "May",
+                                                  "June",
+                                                  "July",
+                                                  "August",
+                                                  "September",
+                                                  "October",
+                                                  "November",
+                                                  "December"),
                     options = list(`actions-box` = TRUE),
                     multiple = TRUE),
         
@@ -274,13 +342,20 @@ ui <-
         helpText("Note: If there is no value on the graph, then that means there was no data for that month.")), 
    
         # Standard for Shiny. Creates a main panel containing my output.
-        
+    
         mainPanel(
           
           # Calling the plot, rentPlot! 
           
-          plotOutput("rentPlot")))
-
+          plotOutput("rentPlot"))),
+  
+          br(),
+          
+          h3("What do you notice?"),
+          
+          p("The default neighborhoods, year, and month show the 9 neighborhoods that Lena and I are interested in living in, due to proximity to our offices. It seems that we should start our apartment hunt by looking for rental units in Gramercy Park and Midtown East! Feel free to explore the data yourself.")
+          
+  
       )
     )
   ),
@@ -308,8 +383,7 @@ ui <-
               # Description of key takeaways
               
               p("In general, rental prices seem to spike in May and October for almost every neighborhood and every year between 2000 and 2019. 
-                For 2018, Central Park South had the highest median rental price (around $9,000) out of all the neighborhoods in Manhattan, while Hamilton Heights and Marble Hill appeared to be the cheapest (<$2300).
-              *maybe insert graph of the 10 neighborhoods Lena and I want to live in and describe which neighborhoods we should focus our attention on as a result of this project*"),
+                For 2018, Central Park South had the highest median rental price (around $9,000) out of all the neighborhoods in Manhattan, while Hamilton Heights and Marble Hill appeared to be the cheapest (<$2300)."),
               
               # Breaks up text, makes it easier to read
              
@@ -351,7 +425,17 @@ ui <-
 
 server <- function(input, output) {
   
-  # Redners a reactive plot for rentPlot
+  # Renders a photo of the Manhattan skyline on my home page
+  
+  output$manhattan <- renderImage({
+    
+    # Calls the Manhattan photo and aligns the image to the middle
+    
+    list(src="manhattan.jpg", style="display: block; margin-left: auto; margin-right: auto;",
+         contentType="image/gif")
+  }, deleteFile = FALSE)
+  
+  # Renders a reactive plot for rentPlot
   
   output$rentPlot <- renderPlot({
     
